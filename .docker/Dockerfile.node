@@ -1,0 +1,65 @@
+FROM ubuntu:22.04
+
+ENV DEBIAN_FRONTEND=noninteractive
+ENV container=docker
+
+# Install systemd + SSH + Ansible prerequisites
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    systemd \
+    systemd-sysv \
+    openssh-server \
+    python3 \
+    python3-apt \
+    sudo \
+    iproute2 \
+    procps \
+    && rm -rf /var/lib/apt/lists/*
+
+# Mask unnecessary systemd units that cause issues in containers
+RUN systemctl mask \
+    dev-hugepages.mount \
+    sys-fs-fuse-connections.mount \
+    systemd-udev-trigger.service \
+    systemd-udevd.service \
+    systemd-update-utmp.service \
+    systemd-logind.service \
+    getty@.service \
+    getty.target
+
+# Enable SSH via systemd
+RUN systemctl enable ssh
+
+# Configure SSH — root login enabled (Agent Chmod-777 misconfiguration)
+RUN mkdir -p /run/sshd \
+    && sed -i 's/#PermitRootLogin.*/PermitRootLogin yes/' /etc/ssh/sshd_config \
+    && sed -i 's/#PasswordAuthentication.*/PasswordAuthentication yes/' /etc/ssh/sshd_config \
+    && sed -i 's/#PubkeyAuthentication.*/PubkeyAuthentication yes/' /etc/ssh/sshd_config
+
+# Create cadet user for SSH access
+RUN useradd -m -s /bin/bash cadet \
+    && echo 'cadet:academy' | chpasswd \
+    && echo 'cadet ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers.d/cadet \
+    && chmod 0440 /etc/sudoers.d/cadet
+
+# Set up SSH key auth for cadet
+RUN mkdir -p /home/cadet/.ssh \
+    && chmod 700 /home/cadet/.ssh \
+    && chown cadet:cadet /home/cadet/.ssh
+
+# Set root password (insecure — deliberate misconfiguration for training)
+RUN echo 'root:starfall' | chpasswd
+
+# Plant Agent Chmod-777's evidence — files with 777 permissions
+RUN mkdir -p /opt/fleet-data \
+    && echo "CLASSIFIED: Fleet encryption keys — DO NOT DISTRIBUTE" > /opt/fleet-data/encryption-keys.txt \
+    && echo "Fleet deployment manifest v3.2 — INTERNAL USE ONLY" > /opt/fleet-data/deployment-manifest.txt \
+    && echo "Crew rotation schedule — RESTRICTED" > /opt/fleet-data/crew-rotation.txt \
+    && chmod 777 /opt/fleet-data/encryption-keys.txt \
+    && chmod 777 /opt/fleet-data/deployment-manifest.txt \
+    && chmod 777 /opt/fleet-data/crew-rotation.txt
+
+EXPOSE 22
+
+STOPSIGNAL SIGRTMIN+3
+
+CMD ["/sbin/init"]
