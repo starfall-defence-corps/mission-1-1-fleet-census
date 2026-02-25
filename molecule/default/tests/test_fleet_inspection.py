@@ -1,6 +1,6 @@
 """
 === STARFALL DEFENCE CORPS ACADEMY ===
-ARIA Automated Verification - Mission 1.1: Fleet Census
+ARIA Automated Verification - Mission 1.1: Fleet Inspection
 ========================================================
 """
 import os
@@ -21,6 +21,18 @@ def _workspace_dir():
 
 def _student_inventory():
     return os.path.join(_workspace_dir(), "inventory", "hosts.yml")
+
+
+def _intel_report():
+    return os.path.join(_workspace_dir(), "reports", "fleet-intel.yml")
+
+
+def _load_intel_report():
+    path = _intel_report()
+    if not os.path.isfile(path):
+        return None
+    with open(path) as f:
+        return yaml.safe_load(f)
 
 
 # -------------------------------------------------------------------
@@ -151,4 +163,99 @@ class TestFactsGathered:
         assert "Ubuntu" in result.stdout, (
             "ARIA: Expected Ubuntu distribution in facts output. "
             "Verify your nodes are reachable and running the correct OS."
+        )
+
+    def test_intel_report_exists(self):
+        """Intel report must exist at workspace/reports/fleet-intel.yml"""
+        assert os.path.isfile(_intel_report()), (
+            "ARIA: No intel report detected at workspace/reports/fleet-intel.yml. "
+            "Copy the template: cp workspace/reports/fleet-intel.yml.example "
+            "workspace/reports/fleet-intel.yml — then fill in your findings."
+        )
+
+    def test_intel_report_has_os_info(self):
+        """Intel report must contain OS information for all nodes"""
+        data = _load_intel_report()
+        if data is None:
+            pytest.skip("Intel report does not exist yet")
+        nodes = data.get("fleet_nodes", {})
+        for host in ["sdc-web", "sdc-db", "sdc-comms"]:
+            node = nodes.get(host, {})
+            os_val = node.get("os", "REPLACE_ME")
+            assert os_val != "REPLACE_ME" and os_val, (
+                f"ARIA: OS not recorded for {host}. Run "
+                f"'ansible all -m setup -a \"filter=ansible_distribution*\"' "
+                f"and record the OS in your intel report."
+            )
+
+    def test_intel_report_has_ip_addresses(self):
+        """Intel report must contain IP addresses for all nodes"""
+        data = _load_intel_report()
+        if data is None:
+            pytest.skip("Intel report does not exist yet")
+        nodes = data.get("fleet_nodes", {})
+        for host in ["sdc-web", "sdc-db", "sdc-comms"]:
+            node = nodes.get(host, {})
+            ip_val = node.get("ip_address", "REPLACE_ME")
+            assert ip_val != "REPLACE_ME" and ip_val, (
+                f"ARIA: IP address not recorded for {host}. Run "
+                f"'ansible all -m setup -a \"filter=ansible_default_ipv4\"' "
+                f"and record the address in your intel report."
+            )
+
+
+# -------------------------------------------------------------------
+# Phase 4: Agent Chmod-777 damage documented
+# -------------------------------------------------------------------
+
+class TestChmod777Evidence:
+    """ARIA verifies: Has the cadet documented Agent Chmod-777's damage?"""
+
+    def test_compromised_files_recorded(self):
+        """Intel report must list compromised files found on fleet nodes"""
+        data = _load_intel_report()
+        if data is None:
+            pytest.skip("Intel report does not exist yet")
+        files = data.get("compromised_files", [])
+        real_files = [f for f in files if f and f != "REPLACE_ME"]
+        assert len(real_files) >= 3, (
+            f"ARIA: Insufficient evidence documented. Found {len(real_files)} "
+            f"compromised file(s) in your report — expected at least 3. "
+            f"Run 'ansible all -m shell -a \"find /opt -perm -0777 -type f "
+            f"2>/dev/null\"' and record every file path in your intel report."
+        )
+
+    def test_compromised_files_are_valid_paths(self):
+        """Compromised file paths must look like real filesystem paths"""
+        data = _load_intel_report()
+        if data is None:
+            pytest.skip("Intel report does not exist yet")
+        files = data.get("compromised_files", [])
+        real_files = [f for f in files if f and f != "REPLACE_ME"]
+        if not real_files:
+            pytest.skip("No compromised files recorded yet")
+        for path in real_files:
+            assert path.startswith("/opt/fleet-data/"), (
+                f"ARIA: Suspicious file path '{path}'. Agent Chmod-777's "
+                f"evidence should be under /opt/fleet-data/. Verify your findings."
+            )
+
+
+# -------------------------------------------------------------------
+# Phase 5: Filtered facts and fleet memory
+# -------------------------------------------------------------------
+
+class TestFilteredFacts:
+    """ARIA verifies: Has the cadet extracted targeted intelligence?"""
+
+    def test_fleet_memory_total_recorded(self):
+        """Intel report must contain total fleet memory"""
+        data = _load_intel_report()
+        if data is None:
+            pytest.skip("Intel report does not exist yet")
+        mem = data.get("fleet_memory_total_mb", 0)
+        assert isinstance(mem, (int, float)) and mem > 0, (
+            "ARIA: Fleet memory total not recorded or is zero. "
+            "Run 'ansible all -m setup -a \"filter=ansible_memtotal_mb\"', "
+            "sum the values from all 3 nodes, and record in your intel report."
         )

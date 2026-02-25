@@ -7,7 +7,7 @@ help: ## Show available commands
 	@echo ""
 	@echo "=============================================="
 	@echo "  STARFALL DEFENCE CORPS ACADEMY"
-	@echo "  Mission 1.1: Fleet Census"
+	@echo "  Mission 1.1: Fleet Inspection"
 	@echo "=============================================="
 	@echo ""
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "  \033[36m%-15s\033[0m %s\n", $$1, $$2}'

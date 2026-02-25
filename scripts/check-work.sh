@@ -3,7 +3,7 @@ set -uo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 ROOT_DIR="$(dirname "$SCRIPT_DIR")"
-TEST_FILE="$ROOT_DIR/molecule/default/tests/test_fleet_census.py"
+TEST_FILE="$ROOT_DIR/molecule/default/tests/test_fleet_inspection.py"
 
 echo ""
 echo "=============================================="
@@ -31,7 +31,7 @@ if [ $EXIT_CODE -eq 0 ]; then
     echo "  ARIA: All objectives verified."
     echo "  Mission 1.1 status: COMPLETE"
     echo ""
-    echo "  Cadet, you have catalogued the fleet."
+    echo "  Cadet, you have inspected the fleet."
     echo "  The Starfall Defence Corps acknowledges"
     echo "  your contribution to fleet security."
     echo "=============================================="
