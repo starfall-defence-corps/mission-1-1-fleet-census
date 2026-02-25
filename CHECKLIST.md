@@ -1,4 +1,4 @@
-# Mission 1.1: Fleet Census — Progress Tracker
+# Mission 1.1: Fleet Inspection — Progress Tracker
 
 **Rank**: Cadet
 **Mission Progress**: 1 of 5 toward Ensign
@@ -26,8 +26,8 @@ Check each item off as you complete it. If a phase is blocked, see `docs/HINTS.m
 ## Phase 3: Reconnaissance
 
 - [ ] `ansible all -m setup` returns facts for all nodes
-- [ ] Identified OS of each node
-- [ ] Identified IP address of each node
+- [ ] Recorded OS of each node in `workspace/reports/fleet-intel.yml`
+- [ ] Recorded IP address of each node in `workspace/reports/fleet-intel.yml`
 
 ---
 
@@ -36,6 +36,7 @@ Check each item off as you complete it. If a phase is blocked, see `docs/HINTS.m
 - [ ] Checked disk space across fleet
 - [ ] Listed running services via `systemctl`
 - [ ] Found Agent Chmod-777's 777-permission files in `/opt/fleet-data/`
+- [ ] Recorded compromised file paths in `workspace/reports/fleet-intel.yml`
 - [ ] Read the exposed classified files
 
 ---
@@ -43,7 +44,7 @@ Check each item off as you complete it. If a phase is blocked, see `docs/HINTS.m
 ## Phase 5: Filtered Facts
 
 - [ ] Used `setup` filter to extract specific facts
-- [ ] Calculated total fleet memory
+- [ ] Calculated total fleet memory and recorded in `workspace/reports/fleet-intel.yml`
 
 ---
 

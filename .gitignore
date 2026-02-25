@@ -15,9 +15,13 @@ CLAUDE.md
 AGENTS.md
 IMPLEMENTATION_PLAN.md
 ideas.md
+fixes.md
 PLAN.md
 
 # IDE
 .idea/
 .vscode/
 *.swp
+
+# Command Center
+.cc-config.json

@@ -1,10 +1,10 @@
 ---
 CLASSIFICATION: CADET EYES ONLY
-MISSION: 1.1 — FLEET CENSUS
+MISSION: 1.1 — FLEET INSPECTION
 DOCUMENT: EXERCISES — Phase-by-Phase Operational Instructions
 ---
 
-# EXERCISES — MISSION 1.1: FLEET CENSUS
+# EXERCISES — MISSION 1.1: FLEET INSPECTION
 
 Complete each phase in sequence. Run `make test` after each phase. Do not advance until ARIA confirms compliance.
 
@@ -244,9 +244,19 @@ ARIA requires all nodes to be reachable. Do not proceed until all three pass.
 
 Ansible's `setup` module collects **facts** — system information automatically gathered from each host. This includes OS version, IP addresses, CPU count, memory, mounted disks, and hundreds of other variables.
 
-You will gather facts across the entire fleet, then use filters to extract specific data points.
+You will gather facts across the entire fleet, then use filters to extract specific data points. Your findings will be recorded in an **intel report** that ARIA will verify.
 
 All commands are run from `workspace/`.
+
+### Step 3.0 — Prepare the Intel Report
+
+Copy the report template to create your working intel file:
+
+```bash
+cp workspace/reports/fleet-intel.yml.example workspace/reports/fleet-intel.yml
+```
+
+You will fill in this file as you complete Phases 3, 4, and 5. ARIA verifies your report when you run `make test`.
 
 ### Step 3.1 — Gather All Facts
 
@@ -288,7 +298,7 @@ This returns only facts whose names begin with `ansible_distribution`. You will 
 - `ansible_distribution_version` — the version number (e.g. `22.04`)
 - `ansible_distribution_release` — the release codename (e.g. `jammy`)
 
-**Answer this question:** What operating system and version is running on each fleet node?
+**Record your finding:** Open `workspace/reports/fleet-intel.yml` and fill in the `os` field for each node (e.g. `Ubuntu 22.04`).
 
 ### Step 3.3 — Filter for Network Information
 
@@ -308,7 +318,7 @@ This returns the primary IPv4 network interface information for each host. The o
 }
 ```
 
-**Answer this question:** What is the IP address of each fleet node on the Docker network?
+**Record your finding:** Open `workspace/reports/fleet-intel.yml` and fill in the `ip_address` field for each node (e.g. `172.30.0.11`).
 
 ### Step 3.4 — Run ARIA's Verification
 
@@ -375,7 +385,9 @@ ansible all -m shell -a "find /opt -perm -0777 -type f 2>/dev/null"
 | `-type f` | Match regular files only, not directories |
 | `2>/dev/null` | Suppress permission-denied errors from directories we cannot read |
 
-You should find files under `/opt/fleet-data/`. Note every file path returned for each node. This is Chmod-777's damage report.
+You should find files under `/opt/fleet-data/`. This is Chmod-777's damage report.
+
+**Record your finding:** Open `workspace/reports/fleet-intel.yml` and list every compromised file path in the `compromised_files` section.
 
 ### Step 4.5 — Read the Exposed Classified Files
 
@@ -424,7 +436,7 @@ ansible all -m setup -a "filter=ansible_memtotal_mb"
 
 This returns the total physical memory in megabytes for each node. Record the value for each host.
 
-**Challenge:** Calculate the total memory available across the entire fleet by adding the three values together. This is the aggregate compute resource available for fleet operations.
+**Record your finding:** Calculate the total memory available across the entire fleet by adding the three values together. Record the sum in `workspace/reports/fleet-intel.yml` under `fleet_memory_total_mb`.
 
 ### Step 5.2 — CPU Information
 
@@ -499,10 +511,10 @@ Before closing this mission, confirm the following:
 
 - [ ] `workspace/inventory/hosts.yml` exists and contains all three fleet nodes
 - [ ] All three nodes respond to `ansible all -m ping` with `SUCCESS`
-- [ ] You have reviewed `setup` facts for OS, network, and hardware on all nodes
-- [ ] You have located Agent Chmod-777's 777-permission files in `/opt/fleet-data/`
+- [ ] `workspace/reports/fleet-intel.yml` contains OS and IP for every node
+- [ ] You have located Agent Chmod-777's 777-permission files and recorded them in the intel report
 - [ ] You have read the exposed classified file content
-- [ ] You have extracted memory and CPU facts using filtered `setup` queries
+- [ ] You have calculated total fleet memory and recorded it in the intel report
 - [ ] `make test` reports all phases passing
 
 If any item is incomplete, return to the corresponding phase and complete it before closing the mission record.

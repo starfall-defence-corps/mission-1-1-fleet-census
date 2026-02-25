@@ -1,0 +1,34 @@
+# Fleet Intelligence Report — Mission 1.1: Fleet Inspection
+#
+# Fill in this file as you complete Phases 3-5 of the exercises.
+# Copy this file to fleet-intel.yml and replace the placeholder values
+# with your actual findings from the fleet nodes.
+#
+# ARIA will verify your report when you run 'make test'.
+# -----------------------------------------------------------
+
+# Phase 3: Fleet Reconnaissance
+# Run: ansible all -m setup -a "filter=ansible_distribution*"
+# Run: ansible all -m setup -a "filter=ansible_default_ipv4"
+fleet_nodes:
+  sdc-web:
+    os: "REPLACE_ME"              # e.g. Ubuntu 22.04
+    ip_address: "REPLACE_ME"      # e.g. 172.30.0.11
+  sdc-db:
+    os: "REPLACE_ME"
+    ip_address: "REPLACE_ME"
+  sdc-comms:
+    os: "REPLACE_ME"
+    ip_address: "REPLACE_ME"
+
+# Phase 4: Agent Chmod-777 Damage Report
+# Run: ansible all -m shell -a "find /opt -perm -0777 -type f 2>/dev/null"
+# List every file path found with 777 permissions (one per line)
+compromised_files:
+  - "REPLACE_ME"    # e.g. /opt/fleet-data/encryption-keys.txt
+  - "REPLACE_ME"
+  - "REPLACE_ME"
+
+# Phase 5: Filtered Facts
+# Run: ansible all -m setup -a "filter=ansible_memtotal_mb"
+fleet_memory_total_mb: 0          # Sum of ansible_memtotal_mb across all 3 nodes

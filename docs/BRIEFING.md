@@ -1,11 +1,11 @@
 ---
 CLASSIFICATION: CADET EYES ONLY
-MISSION: 1.1 — FLEET CENSUS
+MISSION: 1.1 — FLEET INSPECTION
 THEATRE: Starfall Defence Corps Academy
 AUTHORITY: SDC Cyber Command, 2187
 ---
 
-# OPERATION ORDER — MISSION 1.1: FLEET CENSUS
+# OPERATION ORDER — MISSION 1.1: FLEET INSPECTION
 
 ---
 
@@ -31,7 +31,7 @@ All operations will be conducted using **ANSIBLE** — *Automated Network for Se
 
 ## 2. MISSION
 
-Conduct a full census of all fleet nodes. Build the asset registry. Establish connectivity to every node. Execute initial reconnaissance to gather fleet intelligence. Identify and document Agent Chmod-777's damage.
+Conduct a full inspection of all fleet nodes. Build the asset registry. Establish connectivity to every node. Execute initial reconnaissance to gather fleet intelligence. Identify and document Agent Chmod-777's damage.
 
 **End state**: Every node registered, reachable, and inspected. Compromise evidence documented.
 
