@@ -1,7 +1,7 @@
 SHELL := /bin/bash
 ROOT_DIR := $(shell dirname $(realpath $(firstword $(MAKEFILE_LIST))))
 
-.PHONY: setup test reset ssh-web ssh-db ssh-comms help
+.PHONY: setup test reset destroy ssh-web ssh-db ssh-comms help
 
 help: ## Show available commands
 	@echo ""
@@ -21,6 +21,9 @@ test: ## Ask ARIA to verify your work
 
 reset: ## Destroy and rebuild all fleet nodes
 	@bash $(ROOT_DIR)/scripts/reset-lab.sh
+
+destroy: ## Tear down everything (containers, keys, venv)
+	@bash $(ROOT_DIR)/scripts/destroy-lab.sh
 
 ssh-web: ## SSH into sdc-web (fleet web server)
 	@ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null cadet@localhost -p 2221

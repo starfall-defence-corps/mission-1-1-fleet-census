@@ -58,6 +58,7 @@ make help       Show available commands
 make setup      Start the fleet (3 target nodes)
 make test       Ask ARIA to verify your work
 make reset      Destroy and rebuild all fleet nodes
+make destroy    Tear down everything (containers, keys, venv)
 make ssh-web    SSH into sdc-web (fleet web server)
 make ssh-db     SSH into sdc-db (fleet database server)
 make ssh-comms  SSH into sdc-comms (fleet comms relay)
