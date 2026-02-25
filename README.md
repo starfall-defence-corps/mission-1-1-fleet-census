@@ -1,10 +1,10 @@
 # Starfall Defence Corps Academy
 
-## Mission 1.1: Fleet Census
+## Mission 1.1: Fleet Inspection
 
 > *"If you have to SSH into a box, you've already lost."*
 
-You are a new cadet at the Starfall Defence Corps Academy. The fleet's asset registry is chaos. Agent Chmod-777 has been leaving permissions wide open on classified files. Your mission: catalogue every node using ANSIBLE, verify connectivity, and document the damage.
+You are a new cadet at the Starfall Defence Corps Academy. The fleet's asset registry is chaos. Agent Chmod-777 has been leaving permissions wide open on classified files. Your mission: inspect every node using ANSIBLE, verify connectivity, and document the damage.
 
 ## Prerequisites
 
@@ -23,10 +23,12 @@ cd mission-1-1-fleet-census
 
 # 2. Start the fleet
 make setup
-
-# 3. Read your orders
-# Open docs/BRIEFING.md
 ```
+
+3. **Read your orders**: [Mission Briefing](docs/BRIEFING.md)
+4. **Complete the exercises**: [Exercises](docs/EXERCISES.md)
+5. **Stuck?** [Hints & Troubleshooting](docs/HINTS.md)
+6. **Track progress**: [Checklist](CHECKLIST.md)
 
 ## Lab Architecture
 
@@ -36,6 +38,7 @@ make setup
 |  workspace/                              |
 |    ansible.cfg                           |
 |    inventory/hosts.yml  (you create)     |
+|    reports/fleet-intel.yml (you create)  |
 |    .ssh/cadet_key       (auto-generated) |
 |                                          |
 |  Docker Network: 172.30.0.0/24           |
@@ -55,6 +58,7 @@ make help       Show available commands
 make setup      Start the fleet (3 target nodes)
 make test       Ask ARIA to verify your work
 make reset      Destroy and rebuild all fleet nodes
+make destroy    Tear down everything (containers, keys, venv)
 make ssh-web    SSH into sdc-web (fleet web server)
 make ssh-db     SSH into sdc-db (fleet database server)
 make ssh-comms  SSH into sdc-comms (fleet comms relay)
@@ -64,10 +68,10 @@ make ssh-comms  SSH into sdc-comms (fleet comms relay)
 
 | File | Purpose |
 |------|---------|
-| `docs/BRIEFING.md` | Mission briefing — read this first |
-| `docs/EXERCISES.md` | Step-by-step exercises (5 phases) |
-| `docs/HINTS.md` | Troubleshooting and hints |
-| `CHECKLIST.md` | Progress tracker |
+| [BRIEFING.md](docs/BRIEFING.md) | Mission briefing — **read this first** |
+| [EXERCISES.md](docs/EXERCISES.md) | Step-by-step exercises (5 phases) |
+| [HINTS.md](docs/HINTS.md) | Troubleshooting and hints |
+| [CHECKLIST.md](CHECKLIST.md) | Progress tracker |
 
 ## ARIA Review (Pull Request Workflow)
 
