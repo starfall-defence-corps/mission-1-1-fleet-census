@@ -310,10 +310,10 @@ This returns the primary IPv4 network interface information for each host. The o
 
 ```json
 "ansible_default_ipv4": {
-    "address": "172.20.0.x",
-    "gateway": "172.20.0.1",
+    "address": "172.30.0.x",
+    "gateway": "172.30.0.1",
     "interface": "eth0",
-    "netmask": "255.255.0.0",
+    "netmask": "255.255.255.0",
     ...
 }
 ```
