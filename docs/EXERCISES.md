@@ -8,7 +8,18 @@ DOCUMENT: EXERCISES — Phase-by-Phase Operational Instructions
 
 Complete each phase in sequence. Run `make test` after each phase. Do not advance until ARIA confirms compliance.
 
-All commands are executed from the `workspace/` directory unless stated otherwise.
+**Two directories, two purposes:**
+
+- **Ansible commands** (`ansible`, `ansible-playbook`): Run from `workspace/` where `ansible.cfg` lives.
+- **Make commands** (`make test`, `make reset`): Run from the **project root** (where the `Makefile` lives).
+
+When a phase says "Run ARIA's Verification", return to the project root first:
+
+```bash
+cd ..        # from workspace/ back to project root
+make test
+cd workspace # return to workspace for the next phase
+```
 
 ---
 
