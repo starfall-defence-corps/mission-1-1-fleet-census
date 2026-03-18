@@ -12,6 +12,7 @@ You are a new cadet at the Starfall Defence Corps Academy. The fleet's asset reg
 - [GNU Make](https://www.gnu.org/software/make/)
 - [Ansible](https://docs.ansible.com/ansible/latest/installation_guide/) (`ansible-core`)
 - Python 3.10+ (for test environment)
+  - On Debian/Ubuntu: `sudo apt install python3-venv`
 - Git
 
 ## Quick Start
