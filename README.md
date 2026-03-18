@@ -14,6 +14,8 @@ You are a new cadet at the Starfall Defence Corps Academy. The fleet's asset reg
 - Python 3.10+ (for test environment)
 - Git
 
+> **Windows users**: This mission requires a Linux environment. Install [WSL2](https://learn.microsoft.com/en-us/windows/wsl/install) and run all commands from within your WSL terminal. Docker Desktop should be configured to use the WSL2 backend.
+
 ## Quick Start
 
 ```bash
