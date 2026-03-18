@@ -48,21 +48,21 @@ all:
           ansible_host: localhost
           ansible_port: 2221
           ansible_user: cadet
-          ansible_ssh_private_key_file: workspace/ssh/cadet_key
+          ansible_ssh_private_key_file: .ssh/cadet_key
     db_servers:
       hosts:
         sdc-db:
           ansible_host: localhost
           ansible_port: 2222
           ansible_user: cadet
-          ansible_ssh_private_key_file: workspace/ssh/cadet_key
+          ansible_ssh_private_key_file: .ssh/cadet_key
     comms_relays:
       hosts:
         sdc-comms:
           ansible_host: localhost
           ansible_port: 2223
           ansible_user: cadet
-          ansible_ssh_private_key_file: workspace/ssh/cadet_key
+          ansible_ssh_private_key_file: .ssh/cadet_key
 ```
 
 ---
@@ -82,7 +82,7 @@ docker ps
 You should see `sdc-web`, `sdc-db`, and `sdc-comms` in the list.
 
 **"Permission denied (publickey)"**
-Ansible cannot find or use your SSH key. Check that the key file exists at `workspace/ssh/cadet_key`. If the path in your inventory does not match the actual file location, correct it.
+Ansible cannot find or use your SSH key. Check that the key file exists at `workspace/.ssh/cadet_key`. If the path in your inventory does not match the actual file location, correct it.
 
 **"Host key verification failed"**
 The `ansible.cfg` file in this mission already disables strict host key checking. If you are running Ansible manually outside of the project directory and hit this error, add:
