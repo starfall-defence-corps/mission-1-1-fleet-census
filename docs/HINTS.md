@@ -153,6 +153,27 @@ ansible sdc-web -m ping         # target one specific host by name
 
 ---
 
+## WSL (Windows Subsystem for Linux) Hints
+
+**"Ansible is ignoring my ansible.cfg"**
+On WSL, Windows-mounted directories have `777` permissions by default. Ansible treats world-writable directories as untrusted and will silently ignore any `ansible.cfg` found in them.
+
+**Quick fix — set the ANSIBLE_CONFIG environment variable:**
+```
+export ANSIBLE_CONFIG=$(pwd)/ansible.cfg
+```
+Run this from the `workspace/` directory before running Ansible commands. Add it to your `~/.bashrc` or `~/.zshrc` to make it persistent.
+
+**Permanent fix — configure WSL mount options:**
+Create or edit `/etc/wsl.conf`:
+```ini
+[automount]
+options = "metadata,umask=22,fmask=11"
+```
+Then restart WSL (`wsl --shutdown` from PowerShell). This sets proper file permissions on Windows-mounted directories.
+
+---
+
 ## General Troubleshooting
 
 **If everything is broken and you are not sure where to start:**
