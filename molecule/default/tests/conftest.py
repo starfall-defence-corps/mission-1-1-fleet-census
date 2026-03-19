@@ -59,6 +59,8 @@ class _ARIAReporter:
         self.passed = 0
         self.failed = 0
         self.skipped = 0
+        self._phase_results = {}  # {class_name: bool} — True if all tests passed
+        self._current_phase_passed = True
 
     @staticmethod
     def _out(text):
@@ -75,8 +77,15 @@ class _ARIAReporter:
 
         # Phase header on first test in each class
         if cls != self._current_class:
+            # Save previous phase result
+            if self._current_class is not None:
+                self._phase_results[self._current_class] = self._current_phase_passed
+            self._current_phase_passed = True
             self._current_class = cls
             self._out(f"\n  {CYAN}{BOLD}Phase {num}: {label}{RESET}\n")
+
+        if outcome != "passed":
+            self._current_phase_passed = False
 
         if outcome == "passed":
             self.passed += 1
@@ -92,8 +101,17 @@ class _ARIAReporter:
                 self._out(f"      {DIM}↳ {hint}{RESET}\n")
 
     def summary(self):
+        # Save last phase result
+        if self._current_class is not None:
+            self._phase_results[self._current_class] = self._current_phase_passed
+
         total = self.passed + self.failed + self.skipped
         self._out(f"\n  {'─' * 44}\n")
+
+        phases_complete = sum(1 for v in self._phase_results.values() if v)
+        total_phases = len(PHASES)
+        self._out(f"  {BOLD}Progress:{RESET} {phases_complete} of {total_phases} phases complete\n")
+
         parts = []
         if self.passed:
             parts.append(f"{GREEN}{self.passed} verified{RESET}")
