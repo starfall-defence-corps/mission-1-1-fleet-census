@@ -161,6 +161,9 @@ make reset
 ```
 This rebuilds the entire fleet from scratch. You will not lose your inventory file — only the containers are reset.
 
+**"make: *** No targets specified" or "make: *** No rule to make target"**
+You are in the wrong directory. `make` commands must be run from the project root where the `Makefile` is located — not from `workspace/`. Run `cd ..` to go back to the project root.
+
 **If `make test` fails:**
 Read the ARIA error message carefully. ARIA tells you specifically what it expected versus what it found. Fix that one thing, then run `make test` again.
 
