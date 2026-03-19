@@ -12,6 +12,36 @@ All commands are executed from the `workspace/` directory unless stated otherwis
 
 ---
 
+## PHASE 0: Launch the Fleet
+
+> Before any mission can begin, your fleet must be online. Launch the fleet nodes and confirm they are operational.
+
+### Step 0.1 — Start the Fleet
+
+From the **project root directory** (not `workspace/`), run:
+
+```bash
+make setup
+```
+
+This builds the Docker containers, generates SSH credentials, and starts all three fleet nodes. Wait for the output to confirm:
+
+```
+  Fleet Status: 3 nodes ONLINE
+```
+
+### Step 0.2 — If Things Go Wrong
+
+If containers are in a bad state or you need a clean start at any point during the mission:
+
+```bash
+make reset
+```
+
+This destroys all containers and rebuilds them from scratch. Your work in `workspace/` (inventory, reports) is preserved — only the containers are reset.
+
+---
+
 ## PHASE 1: Build the Asset Registry
 
 > The fleet's ships are scattered and undocumented. Your first task is to create a complete asset registry — without it, there is no fleet, only chaos. Every node must be catalogued before any operation can proceed.
