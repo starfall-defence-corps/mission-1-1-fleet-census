@@ -12,8 +12,8 @@
 # Run: ansible all -m setup -a "filter=ansible_default_ipv4"
 fleet_nodes:
   sdc-web:
-    os: "REPLACE_ME"              # e.g. Ubuntu 22.04
-    ip_address: "REPLACE_ME"      # e.g. 172.30.0.11
+    os: "REPLACE_ME"              # e.g. Debian 11
+    ip_address: "REPLACE_ME"      # e.g. 10.0.0.5
   sdc-db:
     os: "REPLACE_ME"
     ip_address: "REPLACE_ME"
@@ -25,7 +25,7 @@ fleet_nodes:
 # Run: ansible all -m shell -a "find /opt -perm -0777 -type f 2>/dev/null"
 # List every file path found with 777 permissions (one per line)
 compromised_files:
-  - "REPLACE_ME"    # e.g. /opt/fleet-data/encryption-keys.txt
+  - "REPLACE_ME"    # e.g. /var/secrets/classified.txt
   - "REPLACE_ME"
   - "REPLACE_ME"
 
