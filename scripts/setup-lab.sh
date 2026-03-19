@@ -13,6 +13,14 @@ echo "  Initialising Fleet Nodes..."
 echo "=============================================="
 echo ""
 
+# Check python3-venv is available
+if ! python3 -m venv --help &>/dev/null; then
+    echo "  ERROR: python3-venv is not installed."
+    echo "  On Debian/Ubuntu: sudo apt install python3-venv"
+    echo "  On Fedora/RHEL:   sudo dnf install python3-virtualenv"
+    exit 1
+fi
+
 # Set up Python virtual environment if not present
 if [ ! -d "$ROOT_DIR/venv" ]; then
     echo "  Setting up Python environment..."
