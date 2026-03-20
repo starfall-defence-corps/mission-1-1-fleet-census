@@ -5,12 +5,16 @@ Provides color-coded, phase-grouped output for mission verification.
 Writes all output to stderr so check-work.sh can discard pytest's
 default stdout while preserving our formatted display.
 """
+import os
 import pytest
 import sys
 
 # -- ANSI escape codes ------------------------------------------------------
 
-_COLOR = hasattr(sys.stderr, "isatty") and sys.stderr.isatty()
+_COLOR = (
+    os.environ.get("ARIA_COLOR") == "1"
+    or (hasattr(sys.stderr, "isatty") and sys.stderr.isatty())
+)
 
 
 def _c(code):
@@ -95,10 +99,14 @@ class _ARIAReporter:
             self._out(f"    {YELLOW}○{RESET} {DIM}{name} — skipped{RESET}\n")
         else:
             self.failed += 1
-            self._out(f"    {RED}✗{RESET} {name}\n")
             hint = _extract_hint(longrepr)
             if hint:
+                # Deficiency: expected failure, student hasn't done this yet
+                self._out(f"    {YELLOW}✗{RESET} {name}\n")
                 self._out(f"      {DIM}↳ {hint}{RESET}\n")
+            else:
+                # Error: unexpected failure (syntax error, connection issue)
+                self._out(f"    {RED}✗{RESET} {name}\n")
 
     def summary(self):
         # Save last phase result
@@ -172,3 +180,6 @@ def pytest_report_teststatus(report, config):
 def pytest_terminal_summary(terminalreporter, exitstatus, config):
     """Print our summary; clear stats to suppress the default summary."""
     _reporter.summary()
+    # Clear default stats so pytest doesn't print its own summary lines
+    terminalreporter.stats.pop("failed", None)
+    terminalreporter.stats.pop("error", None)

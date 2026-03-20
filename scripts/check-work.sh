@@ -27,10 +27,12 @@ if [ -f "$ROOT_DIR/venv/bin/activate" ]; then
 fi
 
 # Run tests.
-# conftest.py writes our pretty output to stderr.
-# Redirect: stderr→terminal, stdout (pytest default noise)→/dev/null.
-python3 -m pytest "$TEST_FILE" --tb=short -q 2>&1 1>/dev/null
-EXIT_CODE=$?
+# ARIA_COLOR=1 forces color output even when piped through grep.
+# conftest.py writes ARIA output to stderr. pytest also leaks assertion
+# noise to stderr — filter it out, keep only our indented ARIA lines.
+ARIA_COLOR=1 python3 -m pytest "$TEST_FILE" --tb=no --no-header -q 2>&1 1>/dev/null \
+    | grep -vE '^(assert |FAILED| *\+  where|  *\+  |[0-9]+ (passed|failed))' || true
+EXIT_CODE=${PIPESTATUS[0]}
 
 echo ""
 if [ $EXIT_CODE -eq 0 ]; then
