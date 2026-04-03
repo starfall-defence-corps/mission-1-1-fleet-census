@@ -28,12 +28,15 @@ cd mission-1-1-fleet-census
 
 # 2. Start the fleet
 make setup
+
+# 3. Activate the Python environment
+source venv/bin/activate
 ```
 
-3. **Read your orders**: [Mission Briefing](docs/BRIEFING.md)
-4. **Complete the exercises**: [Exercises](docs/EXERCISES.md)
-5. **Stuck?** [Hints & Troubleshooting](docs/HINTS.md)
-6. **Track progress**: [Checklist](CHECKLIST.md)
+4. **Read your orders**: [Mission Briefing](docs/BRIEFING.md)
+5. **Complete the exercises**: [Exercises](docs/EXERCISES.md)
+6. **Stuck?** [Hints & Troubleshooting](docs/HINTS.md)
+7. **Track progress**: [Checklist](CHECKLIST.md)
 
 ## Lab Architecture
 
