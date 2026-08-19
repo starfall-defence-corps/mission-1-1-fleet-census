@@ -1,5 +1,7 @@
 # Starfall Defence Corps Academy
 
+> 🧭 🏁 First mission · **You are here: 1.1 Fleet Census** · [1.2 Lock the Door →](https://github.com/starfall-defence-corps/mission-1-2-lock-the-door) · [🏠 Academy Hub](https://github.com/starfall-defence-corps/sdc-academy)
+
 ## Mission 1.1: Fleet Inspection
 
 > *"If you have to SSH into a box, you've already lost."*
