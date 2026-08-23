@@ -29,7 +29,7 @@ RUN systemctl mask \
 # Enable SSH via systemd
 RUN systemctl enable ssh
 
-# Configure SSH — root login enabled (Agent Chmod-777 misconfiguration)
+# Configure SSH — root login enabled (Saboteur Chmod-777 misconfiguration)
 RUN mkdir -p /run/sshd \
     && sed -i 's/#PermitRootLogin.*/PermitRootLogin yes/' /etc/ssh/sshd_config \
     && sed -i 's/#PasswordAuthentication.*/PasswordAuthentication yes/' /etc/ssh/sshd_config \
@@ -49,7 +49,7 @@ RUN mkdir -p /home/cadet/.ssh \
 # Set root password (insecure — deliberate misconfiguration for training)
 RUN echo 'root:starfall' | chpasswd
 
-# Plant Agent Chmod-777's evidence — files with 777 permissions
+# Plant Saboteur Chmod-777's evidence — files with 777 permissions
 RUN mkdir -p /opt/fleet-data \
     && echo "CLASSIFIED: Fleet encryption keys — DO NOT DISTRIBUTE" > /opt/fleet-data/encryption-keys.txt \
     && echo "Fleet deployment manifest v3.2 — INTERNAL USE ONLY" > /opt/fleet-data/deployment-manifest.txt \
