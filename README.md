@@ -1,6 +1,6 @@
 # Starfall Defence Corps Academy
 
-> 🧭 🏁 First mission · **You are here: 1.1 Fleet Census** · [1.2 Lock the Door →](https://github.com/starfall-defence-corps/mission-1-2-lock-the-door) · [🏠 Academy Hub](https://github.com/starfall-defence-corps/sdc-academy)
+> 🧭 [← 0 Reporting for Duty](https://github.com/starfall-defence-corps/mission-0-reporting-for-duty) · **You are here: 1.1 Fleet Census** · [1.2 Lock the Door →](https://github.com/starfall-defence-corps/mission-1-2-lock-the-door) · [🏠 Academy Hub](https://github.com/starfall-defence-corps/sdc-academy)
 
 > ☁️ **No Docker on your machine?** Create your own copy first (Use this template), then on **your** repo: **Code → Codespaces → Create codespace** — everything is preinstalled. First boot takes ~5 min (one-time); after that it starts fast.
 
