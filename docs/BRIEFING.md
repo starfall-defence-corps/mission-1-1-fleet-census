@@ -31,7 +31,7 @@ All operations will be conducted using **ANSIBLE** — *Automated Network for Se
 
 ## 2. MISSION
 
-Conduct a full inspection of all fleet nodes. Build the asset registry. Establish connectivity to every node. Execute initial reconnaissance to gather fleet intelligence. Identify and document Agent Chmod-777's damage.
+Conduct a full inspection of all fleet nodes. Build the asset registry. Establish connectivity to every node. Execute initial reconnaissance to gather fleet intelligence. Identify and document Saboteur Chmod-777's damage.
 
 **End state**: Every node registered, reachable, and inspected. Compromise evidence documented.
 
@@ -41,7 +41,7 @@ Conduct a full inspection of all fleet nodes. Build the asset registry. Establis
 
 ### 3a. Commander's Intent
 
-The fleet cannot defend assets it cannot see. This mission establishes the foundation: a verified, complete asset registry with confirmed connectivity and a baseline intelligence profile on every node. Agent Chmod-777's tampering will be identified and logged before any remediation can proceed.
+The fleet cannot defend assets it cannot see. This mission establishes the foundation: a verified, complete asset registry with confirmed connectivity and a baseline intelligence profile on every node. Saboteur Chmod-777's tampering will be identified and logged before any remediation can proceed.
 
 ### 3b. Concept of Operations
 
@@ -52,7 +52,7 @@ Five sequential phases. Complete each phase before advancing. Full procedural de
 | 1 | Build the Asset Registry | Construct ANSIBLE inventory file covering all fleet nodes |
 | 2 | Verify Connectivity | Execute ad-hoc ping against all nodes; confirm zero failures |
 | 3 | Fleet Reconnaissance | Gather full system facts from all nodes |
-| 4 | Ad-hoc Operations | Investigate Agent Chmod-777's damage; locate 777-permission files |
+| 4 | Ad-hoc Operations | Investigate Saboteur Chmod-777's damage; locate 777-permission files |
 | 5 | Filtered Facts | Extract targeted intelligence variables from fleet nodes |
 
 ### 3c. Fleet Assets
@@ -72,7 +72,7 @@ All nodes are accessible via SSH. Credentials are uniform across the fleet.
 
 - Do not modify or delete fleet data during this mission. Observation and documentation only.
 - All findings are to be reproducible. If ARIA cannot verify your work, your work is not complete.
-- Agent Chmod-777's evidence must be documented before this mission is considered closed.
+- Saboteur Chmod-777's evidence must be documented before this mission is considered closed.
 
 ---
 
@@ -94,7 +94,7 @@ Consulting **HINTS.md** is authorised at Cadet rank. Using available intelligenc
 
 **Reporting**: ARIA is your automated reporting chain. Her output is your after-action record.
 
-**Commander's Final Order**: This mission does not end until every node in the fleet is registered, reachable, and inspected. Agent Chmod-777's damage is documented. No exceptions.
+**Commander's Final Order**: This mission does not end until every node in the fleet is registered, reachable, and inspected. Saboteur Chmod-777's damage is documented. No exceptions.
 
 Proceed to **EXERCISES.md** for phase-by-phase operational instructions.
 

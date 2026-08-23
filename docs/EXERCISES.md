@@ -381,11 +381,11 @@ make test
 
 ## PHASE 4: Ad-hoc Operations
 
-> Agent Chmod-777 has been active. Intelligence suggests permission tampering has occurred across fleet nodes — classified data may be exposed. Conduct immediate damage assessment. Do not remediate. Observe and document only.
+> Saboteur Chmod-777 has been active. Intelligence suggests permission tampering has occurred across fleet nodes — classified data may be exposed. Conduct immediate damage assessment. Do not remediate. Observe and document only.
 
 ### What You Are Doing
 
-Ad-hoc commands let you run arbitrary shell commands across your fleet without writing a playbook. You will use the `shell` module to interrogate each node, checking system health and locating Agent Chmod-777's tampering.
+Ad-hoc commands let you run arbitrary shell commands across your fleet without writing a playbook. You will use the `shell` module to interrogate each node, checking system health and locating Saboteur Chmod-777's tampering.
 
 All commands are run from `workspace/`.
 
@@ -417,9 +417,9 @@ ansible all -m shell -a "systemctl list-units --type=service --state=running"
 
 This lists all active systemd services on each node. Review what is running. Look for anything that should not be present — unexpected services can indicate compromise.
 
-### Step 4.4 — Locate Agent Chmod-777's Evidence
+### Step 4.4 — Locate Saboteur Chmod-777's Evidence
 
-Agent Chmod-777's signature is `777` permissions on files that should be restricted. A permission of `777` means every user on the system — and potentially any process — can read, write, and execute the file. For classified data, this is a critical exposure.
+Saboteur Chmod-777's signature is `777` permissions on files that should be restricted. A permission of `777` means every user on the system — and potentially any process — can read, write, and execute the file. For classified data, this is a critical exposure.
 
 Search for files with `777` permissions in the fleet data directory:
 
@@ -442,7 +442,7 @@ You should find files under `/opt/fleet-data/`. This is Chmod-777's damage repor
 
 ### Step 4.5 — Read the Exposed Classified Files
 
-The files Agent Chmod-777 left exposed contain sensitive fleet data. Read them:
+The files Saboteur Chmod-777 left exposed contain sensitive fleet data. Read them:
 
 ```bash
 ansible all -m shell -a "cat /opt/fleet-data/encryption-keys.txt"
@@ -563,7 +563,7 @@ Before closing this mission, confirm the following:
 - [ ] `workspace/inventory/hosts.yml` exists and contains all three fleet nodes
 - [ ] All three nodes respond to `ansible all -m ping` with `SUCCESS`
 - [ ] `workspace/reports/fleet-intel.yml` contains OS and IP for every node
-- [ ] You have located Agent Chmod-777's 777-permission files and recorded them in the intel report
+- [ ] You have located Saboteur Chmod-777's 777-permission files and recorded them in the intel report
 - [ ] You have read the exposed classified file content
 - [ ] You have calculated total fleet memory and recorded it in the intel report
 - [ ] `make test` reports all phases passing

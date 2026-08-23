@@ -8,7 +8,7 @@
 
 > *"If you have to SSH into a box, you've already lost."*
 
-You are a new cadet at the Starfall Defence Corps Academy. The fleet's asset registry is chaos. Agent Chmod-777 has been leaving permissions wide open on classified files. Your mission: inspect every node using ANSIBLE, verify connectivity, and document the damage.
+You are a new cadet at the Starfall Defence Corps Academy. The fleet's asset registry is chaos. Saboteur Chmod-777 has been leaving permissions wide open on classified files. Your mission: inspect every node using ANSIBLE, verify connectivity, and document the damage.
 
 ## Prerequisites
 

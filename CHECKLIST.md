@@ -35,7 +35,7 @@ Check each item off as you complete it. If a phase is blocked, see `docs/HINTS.m
 
 - [ ] Checked disk space across fleet
 - [ ] Listed running services via `systemctl`
-- [ ] Found Agent Chmod-777's 777-permission files in `/opt/fleet-data/`
+- [ ] Found Saboteur Chmod-777's 777-permission files in `/opt/fleet-data/`
 - [ ] Recorded compromised file paths in `workspace/reports/fleet-intel.yml`
 - [ ] Read the exposed classified files
 
