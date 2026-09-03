@@ -1,10 +1,10 @@
 ---
 CLASSIFICATION: CADET EYES ONLY
-MISSION: 1.1 — FLEET INSPECTION
+MISSION: 1.1 — FLEET CENSUS
 DOCUMENT: EXERCISES — Phase-by-Phase Operational Instructions
 ---
 
-# EXERCISES — MISSION 1.1: FLEET INSPECTION
+# EXERCISES — MISSION 1.1: FLEET CENSUS
 
 Complete each phase in sequence. Run `make test` after each phase. Do not advance until ARIA confirms compliance.
 

@@ -1,4 +1,4 @@
-# Mission 1.1: Fleet Inspection — Progress Tracker
+# Mission 1.1: Fleet Census — Progress Tracker
 
 **Rank**: Midshipman
 **Mission Progress**: 1 of 5 toward Sub-Lieutenant
