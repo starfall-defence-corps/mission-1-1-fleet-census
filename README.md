@@ -4,7 +4,7 @@
 
 > ☁️ **No Docker on your machine?** Create your own copy first (Use this template), then on **your** repo: **Code → Codespaces → Create codespace** — everything is preinstalled. First boot takes ~5 min (one-time); after that it starts fast.
 
-## Mission 1.1: Fleet Inspection
+## Mission 1.1: Fleet Census
 
 > *"If you have to SSH into a box, you've already lost."*
 

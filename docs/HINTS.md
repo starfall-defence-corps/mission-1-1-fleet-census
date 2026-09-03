@@ -1,4 +1,4 @@
-# Mission 1.1: Fleet Inspection — Hints & Troubleshooting Guide
+# Mission 1.1: Fleet Census — Hints & Troubleshooting Guide
 
 **Rank**: Midshipman (Maximum Scaffolding)
 
