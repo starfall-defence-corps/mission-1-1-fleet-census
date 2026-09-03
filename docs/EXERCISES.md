@@ -304,7 +304,7 @@ All commands are run from `workspace/`.
 Copy the report template to create your working intel file:
 
 ```bash
-cp workspace/reports/fleet-intel.yml.example workspace/reports/fleet-intel.yml
+cp reports/fleet-intel.yml.example reports/fleet-intel.yml
 ```
 
 You will fill in this file as you complete Phases 3, 4, and 5. ARIA verifies your report when you run `make test`.
