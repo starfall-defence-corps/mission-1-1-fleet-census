@@ -1,6 +1,6 @@
 # Mission 1.1: Fleet Inspection — Progress Tracker
 
-**Rank**: Sub-Lieutenant
+**Rank**: Midshipman
 **Mission Progress**: 1 of 5 toward Sub-Lieutenant
 
 Check each item off as you complete it. If a phase is blocked, see `docs/HINTS.md`.
