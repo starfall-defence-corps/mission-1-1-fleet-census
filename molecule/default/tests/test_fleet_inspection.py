@@ -1,6 +1,6 @@
 """
 === STARFALL DEFENCE CORPS ACADEMY ===
-ARIA Automated Verification - Mission 1.1: Fleet Inspection
+ARIA Automated Verification - Mission 1.1: Fleet Census
 ========================================================
 """
 import os
