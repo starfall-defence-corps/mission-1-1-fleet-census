@@ -51,3 +51,5 @@ Check each item off as you complete it. If a phase is blocked, see `docs/HINTS.m
 ## Verification
 
 - [ ] `make test` — all ARIA checks pass
+
+**Next stop**: [Mission 1.2 — Lock the Door](https://github.com/starfall-defence-corps/mission-1-2-lock-the-door)
