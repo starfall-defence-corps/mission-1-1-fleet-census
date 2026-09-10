@@ -13,7 +13,7 @@ AUTHORITY: SDC Cyber Command, 2187
 
 ### 1a. Enemy Forces
 
-Voidborn operative **AGENT CHMOD-777** has infiltrated fleet infrastructure networks. Modus operandi: permission manipulation. Agent sets file permissions to `777` on classified fleet data — stripping access controls, exposing sensitive assets, creating vectors for exfiltration. Damage assessment is incomplete. Extent of compromise is unknown.
+Voidborn operative **SABOTEUR CHMOD-777** has infiltrated fleet infrastructure networks. Modus operandi: permission manipulation. The saboteur sets file permissions to `777` on classified fleet data — stripping access controls, exposing sensitive assets, creating vectors for exfiltration. Damage assessment is incomplete. Extent of compromise is unknown.
 
 ### 1b. Friendly Forces
 
