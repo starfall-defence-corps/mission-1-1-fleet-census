@@ -21,7 +21,7 @@ fleet_nodes:
     os: "REPLACE_ME"
     ip_address: "REPLACE_ME"
 
-# Phase 4: Agent Chmod-777 Damage Report
+# Phase 4: Saboteur Chmod-777 Damage Report
 # Run: ansible all -m shell -a "find /opt -perm -0777 -type f 2>/dev/null"
 # List every file path found with 777 permissions (one per line)
 compromised_files:
