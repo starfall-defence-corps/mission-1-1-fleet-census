@@ -205,11 +205,11 @@ class TestFactsGathered:
 
 
 # -------------------------------------------------------------------
-# Phase 4: Agent Chmod-777 damage documented
+# Phase 4: Saboteur Chmod-777 damage documented
 # -------------------------------------------------------------------
 
 class TestChmod777Evidence:
-    """ARIA verifies: Has the cadet documented Agent Chmod-777's damage?"""
+    """ARIA verifies: Has the cadet documented Saboteur Chmod-777's damage?"""
 
     def test_compromised_files_recorded(self):
         """Intel report must list compromised files found on fleet nodes"""
@@ -236,7 +236,7 @@ class TestChmod777Evidence:
             pytest.skip("No compromised files recorded yet")
         for path in real_files:
             assert path.startswith("/opt/fleet-data/"), (
-                f"ARIA: Suspicious file path '{path}'. Agent Chmod-777's "
+                f"ARIA: Suspicious file path '{path}'. Saboteur Chmod-777's "
                 f"evidence should be under /opt/fleet-data/. Verify your findings."
             )
 
