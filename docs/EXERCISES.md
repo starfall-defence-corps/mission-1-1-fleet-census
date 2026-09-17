@@ -8,18 +8,7 @@ DOCUMENT: EXERCISES — Phase-by-Phase Operational Instructions
 
 Complete each phase in sequence. Run `make test` after each phase. Do not advance until ARIA confirms compliance.
 
-**Two directories, two purposes:**
-
-- **Ansible commands** (`ansible`, `ansible-playbook`): Run from `workspace/` where `ansible.cfg` lives.
-- **Make commands** (`make test`, `make reset`): Run from the **project root** (where the `Makefile` lives).
-
-When a phase says "Run ARIA's Verification", return to the project root first:
-
-```bash
-cd ..        # from workspace/ back to project root
-make test
-cd workspace # return to workspace for the next phase
-```
+**One directory for everything**: run every command in this mission — `ansible ...` and `make ...` — from the **project root** (the folder with the `Makefile`). An `ansible.cfg` lives both there and in `workspace/`, so Ansible works from either; the steps below assume the project root throughout. You will still create your inventory at `workspace/inventory/hosts.yml` — only its location changes, not where you run commands.
 
 ---
 
@@ -181,15 +170,15 @@ You will use Ansible's `ping` module to verify that Ansible can connect to each 
 2. Python is available on the remote host
 3. Ansible can execute commands on the node
 
-All commands in this phase are run from the `workspace/` directory.
+All commands in this phase are run from the **project root**.
 
-### Step 2.1 — Change Into the Workspace Directory
+### Step 2.1 — Confirm You Are in the Project Root
 
 ```bash
-cd workspace
+ls Makefile
 ```
 
-You must be in `workspace/` for Ansible to find `ansible.cfg` and the inventory path it references.
+If that lists the `Makefile`, you are in the right place — the `ansible.cfg` in the project root already points at your inventory, so every command from here on runs from this directory.
 
 ### Step 2.2 — Ping the Entire Fleet
 
@@ -273,9 +262,9 @@ Wait for the build to complete, then retry.
 
 Open `workspace/inventory/hosts.yml` and verify the port numbers match the fleet asset table in Phase 1. A single transposed digit causes connection failure.
 
-**Check 3: Are you running from `workspace/`?**
+**Check 3: Are you in the project root?**
 
-Ansible reads `ansible.cfg` from the current directory. If you are not in `workspace/`, it will not find the configuration and may use wrong defaults.
+Ansible reads `ansible.cfg` from the current directory. If you are somewhere other than the project root (or `workspace/`), it will not find the configuration and may use wrong defaults.
 
 ### Step 2.5 — Run ARIA's Verification
 
@@ -297,14 +286,14 @@ Ansible's `setup` module collects **facts** — system information automatically
 
 You will gather facts across the entire fleet, then use filters to extract specific data points. Your findings will be recorded in an **intel report** that ARIA will verify.
 
-All commands are run from `workspace/`.
+All commands are run from the **project root**.
 
 ### Step 3.0 — Prepare the Intel Report
 
 Copy the report template to create your working intel file:
 
 ```bash
-cp reports/fleet-intel.yml.example reports/fleet-intel.yml
+cp workspace/reports/fleet-intel.yml.example workspace/reports/fleet-intel.yml
 ```
 
 You will fill in this file as you complete Phases 3, 4, and 5. ARIA verifies your report when you run `make test`.
@@ -387,7 +376,7 @@ make test
 
 Ad-hoc commands let you run arbitrary shell commands across your fleet without writing a playbook. You will use the `shell` module to interrogate each node, checking system health and locating Saboteur Chmod-777's tampering.
 
-All commands are run from `workspace/`.
+All commands are run from the **project root**.
 
 ### Step 4.1 — Check Disk Space
 
@@ -477,7 +466,7 @@ make test
 
 You have already used `filter` in Phase 3 to narrow `setup` output. In this phase, you will use it systematically to extract specific variables and build a targeted picture of fleet resources.
 
-All commands are run from `workspace/`.
+All commands are run from the **project root**.
 
 ### Step 5.1 — Memory Per Node
 
