@@ -42,17 +42,30 @@ jobs:
               output = fs.readFileSync('aria-console.txt', 'utf8');
             }
             const exitCode = '${{ steps.aria.outputs.exit-code }}';
-            const status = exitCode === '0' ? 'COMPLETE' : 'INCOMPLETE';
-            const icon = exitCode === '0' ? ':white_check_mark:' : ':x:';
+            // A keyless run verifies nothing (tests skipped in CI, no LLM
+            // review) — headline must stay neutral, not claim COMPLETE.
+            const skipped = output.includes('SKIPPED — no ANTHROPIC_API_KEY');
+            const status = skipped ? 'REVIEW SKIPPED — no API key configured'
+              : exitCode === '0' ? 'COMPLETE' : 'INCOMPLETE';
+            const icon = skipped ? ':information_source:'
+              : exitCode === '0' ? ':white_check_mark:' : ':x:';
             const marker = 'ARIA — Mission 1-1 Review';
+
+            // Render the qualitative review as markdown in the comment body;
+            // only the console portion stays inside the code fence (#127).
+            const splitAt = output.indexOf('## ARIA QUALITATIVE REVIEW');
+            const consoleOut = splitAt === -1 ? output : output.slice(0, splitAt).trimEnd();
+            const reviewMd = splitAt === -1 ? '' : output.slice(splitAt);
 
             const body = `## ${icon} ${marker} (${status})
 
+            ${reviewMd}
+
             <details>
-            <summary>Full ARIA Output</summary>
+            <summary>Console output</summary>
 
             \`\`\`
-            ${output}
+            ${consoleOut}
             \`\`\`
 
             </details>

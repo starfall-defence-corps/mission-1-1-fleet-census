@@ -50,22 +50,21 @@ all:
           ansible_host: localhost
           ansible_port: 2221
           ansible_user: cadet
-          ansible_ssh_private_key_file: .ssh/cadet_key
     db_servers:
       hosts:
         sdc-db:
           ansible_host: localhost
           ansible_port: 2222
           ansible_user: cadet
-          ansible_ssh_private_key_file: .ssh/cadet_key
     comms_relays:
       hosts:
         sdc-comms:
           ansible_host: localhost
           ansible_port: 2223
           ansible_user: cadet
-          ansible_ssh_private_key_file: .ssh/cadet_key
 ```
+
+You do not need to point each host at an SSH key — the key path is already set in `ansible.cfg` (present in both the project root and `workspace/`), so commands work the same from either directory.
 
 ---
 
@@ -164,7 +163,7 @@ On WSL, Windows-mounted directories have `777` permissions by default. Ansible t
 ```
 export ANSIBLE_CONFIG=$(pwd)/ansible.cfg
 ```
-Run this from the `workspace/` directory before running Ansible commands. Add it to your `~/.bashrc` or `~/.zshrc` to make it persistent.
+Run this from wherever you're running Ansible commands (the project root or `workspace/`) before running Ansible commands. Add it to your `~/.bashrc` or `~/.zshrc` to make it persistent.
 
 **Permanent fix — configure WSL mount options:**
 Create or edit `/etc/wsl.conf`:
@@ -185,7 +184,7 @@ make reset
 This rebuilds the entire fleet from scratch. You will not lose your inventory file — only the containers are reset.
 
 **"make: *** No targets specified" or "make: *** No rule to make target"**
-You are in the wrong directory. `make` commands must be run from the project root where the `Makefile` is located — not from `workspace/`. Run `cd ..` to go back to the project root.
+You are in the wrong directory. `make` commands must be run from the project root where the `Makefile` is located. Change back to the project root and try again.
 
 **If `make test` fails:**
 Read the ARIA error message carefully. ARIA tells you specifically what it expected versus what it found. Fix that one thing, then run `make test` again.

@@ -40,7 +40,7 @@ if [ $EXIT_CODE -eq 0 ]; then
     echo -e "  ARIA: All objectives verified."
     echo -e "  Mission 1.1 status: COMPLETE"
     echo -e ""
-    echo -e "  Cadet, you have inspected the fleet."
+    echo -e "  Midshipman, you have inspected the fleet."
     echo -e "  The Starfall Defence Corps acknowledges"
     echo -e "  your contribution to fleet security."
     echo -e "  ==============================================${RESET}"
