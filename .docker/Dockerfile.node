@@ -51,9 +51,33 @@ RUN echo 'root:starfall' | chpasswd
 
 # Plant Saboteur Chmod-777's evidence — files with 777 permissions
 RUN mkdir -p /opt/fleet-data \
-    && echo "CLASSIFIED: Fleet encryption keys — DO NOT DISTRIBUTE" > /opt/fleet-data/encryption-keys.txt \
-    && echo "Fleet deployment manifest v3.2 — INTERNAL USE ONLY" > /opt/fleet-data/deployment-manifest.txt \
-    && echo "Crew rotation schedule — RESTRICTED" > /opt/fleet-data/crew-rotation.txt \
+    && printf '%s\n' \
+       "CLASSIFIED: Fleet encryption key register — DO NOT DISTRIBUTE" \
+       "==============================================================" \
+       "SDC Cyber Command — key custodian: Lt. Mara Voss, Signals Div." \
+       "Rotation policy: every 30 cycles. Last rotation: cycle 4471." \
+       "Register entries: sdc-web (slot 1), sdc-db (slot 2), sdc-comms (slot 3)." \
+       "(Training replica — all entries fictional, no live key material.)" \
+       "ARIA NOTE: if any crew member can read this file, Saboteur" \
+       "Chmod-777 has been aboard. Report the permissions, not the contents." \
+       > /opt/fleet-data/encryption-keys.txt \
+    && printf '%s\n' \
+       "Fleet deployment manifest v3.2 — INTERNAL USE ONLY" \
+       "===================================================" \
+       "sdc-web    berth 12-A   forward relay, public-facing" \
+       "sdc-db     berth 12-B   records vault, no direct approach" \
+       "sdc-comms  berth 12-C   long-range array, EM-shielded" \
+       "Next resupply window: cycle 4480, Tender SDC-Callisto." \
+       "(Training replica — vessels and berths are fictional.)" \
+       > /opt/fleet-data/deployment-manifest.txt \
+    && printf '%s\n' \
+       "Crew rotation schedule — RESTRICTED" \
+       "====================================" \
+       "First watch:  Ens. Toll, Spc. Imari      (cycles 4470-4474)" \
+       "Middle watch: Lt. Voss, Ens. Okonkwo     (cycles 4475-4479)" \
+       "Dog watch:    Spc. Halloran, Ens. Toll   (cycles 4480-4484)" \
+       "(Training replica — roster is fictional.)" \
+       > /opt/fleet-data/crew-rotation.txt \
     && chmod 777 /opt/fleet-data/encryption-keys.txt \
     && chmod 777 /opt/fleet-data/deployment-manifest.txt \
     && chmod 777 /opt/fleet-data/crew-rotation.txt

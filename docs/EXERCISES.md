@@ -148,6 +148,8 @@ ls workspace/inventory/
 
 You should see `hosts.yml` listed.
 
+> **Going further (optional)**: a real fleet inventory can carry much more than this — per-group connection vars, host aliases, numbered host ranges, `group_vars/` files, and per-host variables ARIA may suggest in review. The full toolbox is in [FM-1: Ansible Reference](https://github.com/starfall-defence-corps/sdc-academy/blob/main/field-manuals/FM-1-ansible-reference.md) — nothing beyond what you wrote above is required to complete this mission.
+
 ### Step 1.5 — Run ARIA's Verification
 
 ```bash
