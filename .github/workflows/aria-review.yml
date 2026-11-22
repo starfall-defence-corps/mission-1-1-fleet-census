@@ -17,11 +17,11 @@ jobs:
 
     steps:
       - name: Checkout mission repo
-        uses: actions/checkout@v4
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
 
       - name: Run ARIA review
         id: aria
-        uses: starfall-defence-corps/aria@main
+        uses: starfall-defence-corps/aria@v1.0.0
         with:
           mission: "1-1"
           mission-root: ${{ github.workspace }}
@@ -31,7 +31,10 @@ jobs:
 
       - name: Post ARIA review as PR comment
         if: always()
-        uses: actions/github-script@v7
+        uses: actions/github-script@f28e40c7f34bde8b3046d885e986cb6290c5673b # v7.1.0
+        env:
+          ARIA_ICON: ${{ steps.aria.outputs.icon }}
+          ARIA_HEADLINE: ${{ steps.aria.outputs.headline }}
         with:
           script: |
             const fs = require('fs');
@@ -41,14 +44,11 @@ jobs:
             } catch {
               output = fs.readFileSync('aria-console.txt', 'utf8');
             }
-            const exitCode = '${{ steps.aria.outputs.exit-code }}';
-            // A keyless run verifies nothing (tests skipped in CI, no LLM
-            // review) — headline must stay neutral, not claim COMPLETE.
-            const skipped = output.includes('SKIPPED — no ANTHROPIC_API_KEY');
-            const status = skipped ? 'REVIEW SKIPPED — no API key configured'
-              : exitCode === '0' ? 'COMPLETE' : 'INCOMPLETE';
-            const icon = skipped ? ':information_source:'
-              : exitCode === '0' ? ':white_check_mark:' : ':x:';
+            // ARIA decides the headline (review posted / skipped: no API key /
+            // failed: API error); this step only renders it. CI never grades
+            // the mission — the cadet's local `make test` does.
+            const status = process.env.ARIA_HEADLINE || 'REVIEW FAILED — ARIA did not run';
+            const icon = process.env.ARIA_ICON || ':warning:';
             const marker = 'ARIA — Mission 1-1 Review';
 
             // Render the qualitative review as markdown in the comment body;
